@@ -98,8 +98,7 @@ As we've observed from running df.describe(), age has outliers that are erroneou
 ```python
 def is_outlier(points, thresh=3.5):
     """"""
-    Returns a boolean array with True if points are outliers and False 
-    Otherwise.
+    Returns a boolean array with True if points are outliers and False otherwise.
     """"""
     if len(points.shape) == 1:
         points = points[:,None]
