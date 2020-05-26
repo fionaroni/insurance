@@ -28,15 +28,17 @@ print('shape: ', df.shape) # 19103 rows, 9 columns
 
 df.describe()
 ```
+
 ```python
-   def find_missing_employees(lst): 
-      return [x for x in range(lst[0], lst[-1]+1)  
+def find_missing_employees(lst): 
+  return [x for x in range(lst[0], lst[-1]+1)  
                                if x not in lst] 
-   l = df[""Employee Id""].tolist()
-   missing_employee_IDs = find_missing_employees(l)
-   print(len(missing_employee_IDs)) # returns 38
+l = df[""Employee Id""].tolist()
+missing_employee_IDs = find_missing_employees(l)
+print(len(missing_employee_IDs)) # returns 38
 ```
-```markdown
+
+```python
 n_observations_per_quarter = df[""Quarter""].value_counts()
 n_observations_per_quarter.sort_index(inplace=True)
 n_observations_per_quarter.plot.bar(figsize=(10,5), color='lightslategray')
@@ -54,7 +56,7 @@ plt.close()
 ### Missing Data
 If we assume that the sex and race of each employee did not change over time, we can impute this missing data with values from other rows associated with the same employee. But because these employees are NaN for all observations, we cannot impute any missing values.
 
-```markdown
+```python
 df_nan = df[df.isnull().any(axis=1)]
 race_nan = df_nan[df_nan['Race'].isnull() == True] # all rows with NaN for Race
 race_emps = race_nan['Employee Id'].drop_duplicates().values.tolist()
@@ -63,7 +65,7 @@ np.nanmax(df_race['Race'].values) # check to see if these 220 employees have a n
 np.nanmin(df_race['Race'].values) # check to see if these 220 employees have a non-NaN value for Race in any other row
 
 ```
-```markdown
+```python
 sex_nan = df_nan[df_nan['Sex (Male=1)'].isnull() == True] # all rows with NaN for Sex 
 sex_emps = sex_nan['Employee Id'].drop_duplicates().values.tolist()
 df_sex = df[df['Employee Id'].isin(sex_emps)]
@@ -73,7 +75,7 @@ np.nanmin(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees hav
 
 ## Employee Characteristics
 
-```markdown
+```python
 # Sex Characteristic
 sex_12q = df.groupby(['Quarter'])['Sex (Male=1)'].value_counts(normalize=True) * 100
 sex_12q.unstack().plot.bar(figsize=(10,5), colors=('pink','chocolate')).set_title('Sex of Employees Over Time')
@@ -93,7 +95,7 @@ Sex of employees is roughly 50% male and 50% female throughout 12 quarters, with
 
 As we've observed from running df.describe(), age has outliers that are erroneous. Filter outliers using is_outlier() function.
 
-```markdown
+```python
 def is_outlier(points, thresh=3.5):
     """"""
     Returns a boolean array with True if points are outliers and False 
@@ -111,7 +113,7 @@ def is_outlier(points, thresh=3.5):
     return modified_z_score > thresh
 ```
 
-```markdown
+```python
 # Age histogram
 fig, ax3 = plt.subplots(figsize=(10,5))
 ax3.hist(filtered, density=True, color='steelblue')
@@ -125,7 +127,7 @@ plt.close()
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/age_q12_filtered.png)
 
-```markdown
+```python
 # Race over 12 Quarters 
 race_12q = df.groupby(['Quarter'])['Race'].value_counts(normalize=True) * 100
 race_12q.unstack().plot.bar(figsize=(10,5)).set_title('Race of Employees Over Time')
@@ -137,7 +139,7 @@ print(race_12q)
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/race_time.png)
 
-```markdown
+```python
 # Salary Over 12 Quarters
 fig, ax5 = plt.subplots(1,1,figsize=(10,5))
 sns.set_style(""whitegrid"")
@@ -152,7 +154,7 @@ for tick, label in zip(pos, ax5.get_xticklabels()):
 
 ## Relationship between Health Score and Employee Characteristics
 
-```markdown
+```python
 # Heatmap: All Attributes
 fig = plt.figure(figsize=(10,5))
 hm = df.loc[:,['Sex (Male=1)','Quarter','Salary','Age','Race','Health Score','Hospital Visit This Quarter (1=Yes)']]
@@ -178,7 +180,7 @@ Health score and salary are positively correlated (as salaries of employees incr
 Health score and race are negatively correlated (a race of 1.0 is associated with a higher health score, while a race of 3.0 is associated with a lower health score; -0.03 correlation).
 
 
-```markdown
+```python
 # Scatterplot: Age (filtered out outliers) and Health Score
 sns.set(style=""darkgrid"")
 fig, ax5 = plt.subplots(figsize=(10,5))
@@ -190,7 +192,7 @@ sns.despine()
 There is a slight positive slope. Age and Health Score are directly correlated. 
 This might indicate that the older employees are less healthy.
 
-```markdown
+```python
 # Scatterplot: Salary and Health Score
 sns.set(style=""darkgrid"")
 fig, ax6 = plt.subplots(figsize=(10,5))
@@ -202,7 +204,7 @@ sns.despine()
 There is a very slight positive slope. Salary and Health Score are directly correlated.
 This might indicate that employees with higher salaries and are less healthy. Likely data quality issues with the anomalies at health score of 10.
 
-```markdown
+```python
 # Facet grid: Sex, Race, Hospital Visit, and Health Score
 copy=df.copy()
 copy['Sex (Male=1)'] = copy['Sex (Male=1)'].map({1: ""Male"", 0: ""Female""})
@@ -223,7 +225,7 @@ InsurAHealth's claim implies that the employees at Company A (who are represente
 
 However, boxplot below shows mean health scores of 3.4 in Q1, 3.5 in Q6, and 3.9 in Q12. There is a steady increase in health scores over time.
 
-```markdown
+```python
 # Mean Health Scores Over Time
 fig, ax8 = plt.subplots(1,1,figsize=(10,5))
 sns.boxplot(x='Quarter', y='Health Score', data=df, ax=ax8, color='indianred').set_title('Health Scores Over Time')
