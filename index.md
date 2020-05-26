@@ -233,6 +233,8 @@ pos = range(len(means))
 for tick, label in zip(pos, ax8.get_xticklabels()):
     ax8.text(pos[tick], means[tick] + 0.05, mean_labels[tick], horizontalalignment='center', size='large', color='k')
 ```
+![Image](https://github.com/fionaroni/insurance/blob/master/health-scores_time_means.png)
+![Image](https://github.com/fionaroni/insurance/blob/master/health-scores_time_medians.png)
 
 The heatmaps and facet grid show that Age, Sex, and Salary are attributes that are positively correlated with Health Score. 
 In other words, older people tend to have higher health scores than younger people. Males tend to have higher health scores than females. And people with higher salaries tend to have higher health scores than people with lower salaries.
