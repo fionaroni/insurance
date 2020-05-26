@@ -52,6 +52,8 @@ plt.close()
 
 
 ### Missing Data
+If we assume that the sex and race of each employee did not change over time, we can impute this missing data with values from other rows associated with the same employee. But because these employees are NaN for all observations, we cannot impute any missing values.
+
 ```markdown
 df_nan = df[df.isnull().any(axis=1)]
 race_nan = df_nan[df_nan['Race'].isnull() == True] # all rows with NaN for Race
