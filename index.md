@@ -1,15 +1,15 @@
 ## Background Information
 
 A large company, Company A, provides health insurance to its employees. Every four years, Company A’s insurer, InsurAHealth, reviews the health status of the employees. To do this, InsurAHealth calculates a health score between 0 and 6 for each employee on a quarterly basis.
-   *0 denotes a very healthy person, and 6 denotes a very sick person. 
-   *The ‘health score’ is a proprietary tool used by InsurAHealth. The items that go into its formula are not public.
+   * 0 denotes a very healthy person, and 6 denotes a very sick person. 
+   * The ‘health score’ is a proprietary tool used by InsurAHealth. The items that go into its formula are not public.
 
 This past review cycle InsurAHealth claimed that the employees have gotten sicker. 
-   *Mean Health Score in Quarter 1 was 3.4, in Quarter 6 it was 3.5, and Quarter 12 it was 3.9.
+   * Mean Health Score in Quarter 1 was 3.4, in Quarter 6 it was 3.5, and Quarter 12 it was 3.9.
 
 Company A has hired you to evaluate InsurAHealth's claim that employees are sicker. To facilitate your analysis, InsurAHealth has provided you with data for 12 quarters that includes 2,000 employees from Company A. 
-   *Each quarter is a representative sample of the employees at Company A in that quarter.
-   *The demographic information included in this data is not part of InsurAHealth's health score calculation."
+   * Each quarter is a representative sample of the employees at Company A in that quarter.
+   * The demographic information included in this data is not part of InsurAHealth's health score calculation."
 
 
 ## Understanding the Data
