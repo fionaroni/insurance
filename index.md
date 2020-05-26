@@ -71,7 +71,7 @@ np.nanmax(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees hav
 np.nanmin(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees have a non-NaN value for Sex in any other row
 ```
 
-### Employee Characteristics
+## Employee Characteristics
 
 ```markdown
 # Sex Characteristic
@@ -150,7 +150,7 @@ for tick, label in zip(pos, ax5.get_xticklabels()):
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/salary_time.png)
 
-### Relationship between Health Score and Employee Characteristics
+## Relationship between Health Score and Employee Characteristics
 
 ```markdown
 # Heatmap: All Attributes
@@ -218,7 +218,7 @@ Employees who have a hospital visit in a given quarter have higher health scores
 Employees with a Race of 1.0 have a higher health score (unhealthier) than employees with a race of 2.0 or 3.0.
 
 
-### Evaluating the Claim
+## Evaluating the Claim
 InsurAHealth's claim implies that the employees at Company A (who are represented by each sample in each quarter) are becoming more ill over time.
 
 However, boxplot below shows mean health scores of 3.4 in Q1, 3.5 in Q6, and 3.9 in Q12. There is a steady increase in health scores over time.
@@ -233,7 +233,6 @@ pos = range(len(means))
 for tick, label in zip(pos, ax8.get_xticklabels()):
     ax8.text(pos[tick], means[tick] + 0.05, mean_labels[tick], horizontalalignment='center', size='large', color='k')
 ```
-![Image](https://github.com/fionaroni/insurance/blob/master/health-scores_time_means.png)
 ![Image](https://github.com/fionaroni/insurance/blob/master/health-scores_time_medians.png)
 
 The heatmaps and facet grid show that Age, Sex, and Salary are attributes that are positively correlated with Health Score. 
