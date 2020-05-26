@@ -129,7 +129,6 @@ plt.close()"
 # Race over 12 Quarters 
 race_12q = df.groupby(['Quarter'])['Race'].value_counts(normalize=True) * 100
 race_12q.unstack().plot.bar(figsize=(10,5)).set_title('Race of Employees Over Time')
-#plt.set_style('darkgrid')
 plt.ylabel('Percentage of Sample Population')
 plt.legend(bbox_to_anchor=(1.0, 0.8))
 plt.xticks(rotation = 0)
@@ -167,11 +166,14 @@ plt.show()
 
 Salary and sex have a correlation of 0.47. Having a high salary and being male are positively correlated.
 There is also a relatively high correlation, 0.48, between quarter and salary, indicating that employees have higher salaries in the latter part of the 3-year period.
+
 There is a correlation of 0.19 between age and quarter, meaning that employees are older (as a whole) in the latter part of the 3-year period compared to earlier quarters.
+
 Health score and sex are positively correlated (males are associated with higher health scores; 0.093 correlation).
 Health score and age are positively correlated (older employees are associated with higher health scores; 0.16 correlation).
 Health score and hospital visits are positively correlated (which makes sense- if you weren’t at least fairly sick, your health condition would not warrant a hospital visit; 0.13 correlation). Perhaps the presence of a health condition might prompt an employee to make a visit to the hospital in order to get well.
 Health score and salary are positively correlated (as salaries of employees increase, health scores increase as well; 0.06 correlation).
+
 Health score and race are negatively correlated (a race of 1.0 is associated with a higher health score, while a race of 3.0 is associated with a lower health score; -0.03 correlation).
 
 
@@ -200,7 +202,7 @@ There is a very slight positive slope. Salary and Health Score are directly corr
 This might indicate that employees with higher salaries and are less healthy. Likely data quality issues with the anomalies at health score of 10.
 
 ```markdown
-"# Facet grid: Sex, Race, Hospital Visit, and Health Score
+# Facet grid: Sex, Race, Hospital Visit, and Health Score
 copy=df.copy()
 copy['Sex (Male=1)'] = copy['Sex (Male=1)'].map({1: ""Male"", 0: ""Female""})
 copy['Hospital Visit This Quarter (1=Yes)'] = copy['Hospital Visit This Quarter (1=Yes)'].map({1: ""Yes"", 0: ""No""})
@@ -223,33 +225,7 @@ Employees with a Race of 1.0 have a higher health score (unhealthier) than emplo
 ```markdown
 ```
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](https://github.com/fionaroni/insurance/blob/master/age_q12_filtered.png)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fionaroni/insurance/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
 
 
 
