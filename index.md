@@ -14,7 +14,7 @@ Company A has hired you to evaluate InsurAHealth's claim that employees are sick
 
 ## Understanding the Data
 
-:::python
+```python
 import datetime as dt
 import pandas as pd
 import numpy as np
@@ -27,15 +27,15 @@ print('columns: ', list(df.columns.values))
 print('shape: ', df.shape) # 19103 rows, 9 columns
 
 df.describe()
-
-:::python
+```
+```python
    def find_missing_employees(lst): 
       return [x for x in range(lst[0], lst[-1]+1)  
                                if x not in lst] 
    l = df[""Employee Id""].tolist()
    missing_employee_IDs = find_missing_employees(l)
    print(len(missing_employee_IDs)) # returns 38
-
+```
 ```markdown
 n_observations_per_quarter = df[""Quarter""].value_counts()
 n_observations_per_quarter.sort_index(inplace=True)
