@@ -131,9 +131,9 @@ Syntax highlighted code block
 
 **Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
+[Link](url) and ![Image](https://github.com/fionaroni/insurance/blob/master/age_q12_filtered.png)
 ```
-
+![Image](https://github.com/fionaroni/insurance/blob/master/age_q12_filtered.png)
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Jekyll Themes
