@@ -72,6 +72,7 @@ np.nanmin(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees hav
 ### Employee Characteristics
 
 ```markdown
+# Sex Characteristic
 sex_12q = df.groupby(['Quarter'])['Sex (Male=1)'].value_counts(normalize=True) * 100
 sex_12q.unstack().plot.bar(figsize=(10,5), colors=('pink','chocolate')).set_title('Sex of Employees Over Time')
 plt.legend(labels=('female', 'male'), bbox_to_anchor=(1.0, 0.8))
@@ -88,19 +89,13 @@ print(sex_12q)
 
 Sex of employees is roughly 50% male and 50% female throughout 12 quarters, with higher proportion of females (50.2%-51.5%) in Quarters 1 to 3 and higher proportion of males (50.6%-51.3%) in Quarters 4 to 12.
 
-As we've observed from running df.describe(), age has outliers that are erroneous. Filter out the outliers using an is_outlier() function.
+As we've observed from running df.describe(), age has outliers that are erroneous. Filter outliers using is_outlier() function.
 
 ```markdown
-"def is_outlier(points, thresh=3.5):
+def is_outlier(points, thresh=3.5):
     """"""
     Returns a boolean array with True if points are outliers and False 
     Otherwise.
-
-    References:
-    ----------
-        Boris Iglewicz and David Hoaglin (1993), ""Volume 16: How to Detect and
-        Handle Outliers"", The ASQC Basic References in Quality Control:
-        Statistical Techniques, Edward F. Mykytka, Ph.D., Editor. 
     """"""
     if len(points.shape) == 1:
         points = points[:,None]
@@ -115,6 +110,7 @@ As we've observed from running df.describe(), age has outliers that are erroneou
 ```
 
 ```markdown
+# Age histogram
 "fig, ax3 = plt.subplots(figsize=(10,5))
 ax3.hist(filtered, density=True, color='steelblue')
 plt.ylabel(""Frequency"")
@@ -167,14 +163,14 @@ plt.show()
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/heatmap_all-attributes.png)
 
-"Salary and sex have a correlation of 0.47. Having a high salary and being male are positively correlated.
+Salary and sex have a correlation of 0.47. Having a high salary and being male are positively correlated.
 There is also a relatively high correlation, 0.48, between quarter and salary, indicating that employees have higher salaries in the latter part of the 3-year period.
-There is a correlation of 0.19 between age and quarter, meaning that employees are older (as a whole) in the latter part of the 3-year period compared to earlier quarters."
-"Health score and sex are positively correlated (males are associated with higher health scores; 0.093 correlation).
+There is a correlation of 0.19 between age and quarter, meaning that employees are older (as a whole) in the latter part of the 3-year period compared to earlier quarters.
+Health score and sex are positively correlated (males are associated with higher health scores; 0.093 correlation).
 Health score and age are positively correlated (older employees are associated with higher health scores; 0.16 correlation).
-Health score and hospital visits are positively correlated (which makes sense- if you weren’t at least fairly sick, your health condition would not warrant a hospital visit; 0.13 correlation). Perhaps the presence of a health condition might prompt an employee to make a visit to the hospital in order to get well."
-"Health score and salary are positively correlated (as salaries of employees increase, health scores increase as well; 0.06 correlation).
-Health score and race are negatively correlated (a race of 1.0 is associated with a higher health score, while a race of 3.0 is associated with a lower health score; -0.03 correlation)."
+Health score and hospital visits are positively correlated (which makes sense- if you weren’t at least fairly sick, your health condition would not warrant a hospital visit; 0.13 correlation). Perhaps the presence of a health condition might prompt an employee to make a visit to the hospital in order to get well.
+Health score and salary are positively correlated (as salaries of employees increase, health scores increase as well; 0.06 correlation).
+Health score and race are negatively correlated (a race of 1.0 is associated with a higher health score, while a race of 3.0 is associated with a lower health score; -0.03 correlation).
 
 
 ```markdown
