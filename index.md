@@ -61,16 +61,16 @@ df_nan = df[df.isnull().any(axis=1)]
 race_nan = df_nan[df_nan['Race'].isnull() == True] # all rows with NaN for Race
 race_emps = race_nan['Employee Id'].drop_duplicates().values.tolist()
 df_race = df[df['Employee Id'].isin(race_emps)]
-np.nanmax(df_race['Race'].values) # check to see if these 220 employees have a non-NaN value for Race in any other row
-np.nanmin(df_race['Race'].values) # check to see if these 220 employees have a non-NaN value for Race in any other row
+np.nanmax(df_race['Race'].values) 
+np.nanmin(df_race['Race'].values)
 
 ```
 ```python
 sex_nan = df_nan[df_nan['Sex (Male=1)'].isnull() == True] # all rows with NaN for Sex 
 sex_emps = sex_nan['Employee Id'].drop_duplicates().values.tolist()
 df_sex = df[df['Employee Id'].isin(sex_emps)]
-np.nanmax(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees have a non-NaN value for Sex in any other row
-np.nanmin(df_sex['Sex (Male=1)'].values) # check to see if these 7 employees have a non-NaN value for Sex in any other row
+np.nanmax(df_sex['Sex (Male=1)'].values) 
+np.nanmin(df_sex['Sex (Male=1)'].values) 
 ```
 
 ## Employee Characteristics
