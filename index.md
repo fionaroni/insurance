@@ -222,7 +222,7 @@ Employees with a Race of 1.0 have a higher health score (unhealthier) than emplo
 ## Evaluating the Claim
 InsurAHealth's claim implies that the employees at Company A (who are represented by each sample in each quarter) are becoming more ill over time.
 
-However, boxplot below shows mean health scores of 3.4 in Q1, 3.5 in Q6, and 3.9 in Q12. There is a steady increase in health scores over time.
+However, boxplot below shows mean health scores of 3.4 in Q1, 3.5 in Q6, and 3.9 in Q12, indicating a steady increase in health scores over time.
 
 ```python
 # Mean Health Scores Over Time
