@@ -113,7 +113,7 @@ def is_outlier(points, thresh=3.5):
 
 ```markdown
 # Age histogram
-"fig, ax3 = plt.subplots(figsize=(10,5))
+fig, ax3 = plt.subplots(figsize=(10,5))
 ax3.hist(filtered, density=True, color='steelblue')
 plt.ylabel(""Frequency"")
 plt.xlabel(""Age"")
@@ -121,7 +121,7 @@ plt.grid(b=True, which='major', color='#666666', linestyle='-')
 plt.title('Age of Employees in Quarter 12')
 plt.savefig('age_q12_filtered.png')
 plt.show()
-plt.close()"
+plt.close()
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/age_q12_filtered.png)
 
@@ -150,6 +150,7 @@ for tick, label in zip(pos, ax5.get_xticklabels()):
 ```
 ![Image](https://github.com/fionaroni/insurance/blob/master/salary_time.png)
 
+### Relationship between Health Score and Employee Characteristics
 
 ```markdown
 # Heatmap: All Attributes
@@ -216,16 +217,32 @@ Males have a higher health score (3.6-3.8) than females (3.3-3.4) across all rac
 Employees who have a hospital visit in a given quarter have higher health scores in that quarter (4.1-4.3) than those who do not have a hospital visit (3.2-3.3) across all races.
 Employees with a Race of 1.0 have a higher health score (unhealthier) than employees with a race of 2.0 or 3.0.
 
-```markdown
-```
+
+### Evaluating the Claim
+InsurAHealth's claim implies that the employees at Company A (who are represented by each sample in each quarter) are becoming more ill over time.
+
+However, boxplot below shows mean health scores of 3.4 in Q1, 3.5 in Q6, and 3.9 in Q12. There is a steady increase in health scores over time.
 
 ```markdown
+# Mean Health Scores Over Time
+fig, ax8 = plt.subplots(1,1,figsize=(10,5))
+sns.boxplot(x='Quarter', y='Health Score', data=df, ax=ax8, color='indianred').set_title('Health Scores Over Time')
+means = df.groupby(['Quarter'])['Health Score'].mean().values # calculate means
+mean_labels = [str(np.round(s, 2)) for s in means] # add mean labels
+pos = range(len(means))
+for tick, label in zip(pos, ax8.get_xticklabels()):
+    ax8.text(pos[tick], means[tick] + 0.05, mean_labels[tick], horizontalalignment='center', size='large', color='k')
 ```
 
-```markdown
-```
+The heatmaps and facet grid show that Age, Sex, and Salary are attributes that are positively correlated with Health Score. 
+In other words, older people tend to have higher health scores than younger people. Males tend to have higher health scores than females. And people with higher salaries tend to have higher health scores than people with lower salaries.
 
+The barplot, “Sex of Employees Over Time,” and the boxplots, “Age of Employees Over Time” and “Salary of Employees Over Time”, from Question 1 show how over the 12 quarters, the employees at Company A have a greater proportion of male employees, older employees, and employees who have higher salaries. Considering that these attributes increase in frequency over the 12 quarters and that they also tend to be associated with a higher health score (less healthy), it is possible that the increase of Mean Health Scores results from changes in employee characteristics/demographics at Company A, rather than from the employees becoming more ill.
 
+For example, an older employee is more likely to develop diseases or illnesses than a younger employee. The boxplot “Age of Employees Over Time” shows that the mean age of employees increases from Q1 to Q12. Perhaps in the latter quarters, Company A hired new employees who were older and thus already experiencing some health problems. Or perhaps in the latter quarters, some young employees left the company, causing the existing “old” employees’ health scores to have a greater impact on the mean. Or perhaps both of these happened simultaneously. These occurrences could increase the mean age of the employees, while the health statuses of the employees remain completely unchanged.
 
+High salaries could be linked with higher-position jobs that are more demanding and more stressful. The “Salary of Employees Over Time” boxplot shows that the mean salary of employees increases from Q1 to Q12. Perhaps in the latter quarters, Company A hired new employees who came from high-position jobs at their previous companies and already exhibited signs of poor health. The company experienced a large increase in new hires in executive positions with high salaries and nearly no increase in new hires in low-stress roles with few repercussions on health. The employees at Company A are not “getting sicker.” Rather, Company A now has a greater proportion of employees who are sickly due to their jobs.
 
+Males tend to have more health issues than females, perhaps because males are not as diligent about exercising certain self-care habits such as diet and exercise. The facet grid shows that males have higher health scores than females. The barplot, “Sex of Employees Over Time,” shows the sample population becoming slightly more male as time progresses. Rather than the employees at Company A “getting sicker,” the proportion of males has increased, which has contributed to the increased Mean Health Score. We have also observed from the heatmap that being male and having a high salary are positively correlated, which further explains how average health scores might increase over time, and that employees are not necessarily getting sicker.
 
+In conclusion, while it is true that the mean Health Score increases from Quarter 1 to Quarter 12, we should not take InsurAHealth’s claim at face value because the Health Scores might not account for several confounding variables. Unless we control for these variables over time, we cannot be certain that the mean Health Score is a reliable indicator of the worsening or improvement of the health conditions of employees at Company A.
